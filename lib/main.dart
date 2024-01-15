@@ -4,19 +4,19 @@ void main() {
   runApp(PerguntaApp());
 }
 
-class PerguntaAppState extends State<PerguntaApp> {
-  int perguntaAtual = 0;
+class _PerguntaAppState extends State<PerguntaApp> {
+  int _perguntaAtual = 0;
 
-  void responder() {
+  void _responder() {
     setState(() {
-      perguntaAtual++;
+      _perguntaAtual++;
     });
-    print('Pergunta atual: $perguntaAtual');
+    print('Pergunta atual: $_perguntaAtual');
   }
 
   @override
   Widget build(BuildContext context) {
-    final perguntas = [
+    final _perguntas = [
       'Qual a sua cor favorita?',
       'Qual o seu animal favorito?'
     ];
@@ -26,10 +26,10 @@ class PerguntaAppState extends State<PerguntaApp> {
         appBar: AppBar(title: const Text('Perguntas')),
         body: Column(
           children: [
-            Text(perguntas[perguntaAtual]),
-            ElevatedButton(onPressed: responder, child: Text('Resposta 1')),
-            ElevatedButton(onPressed: responder, child: Text('Resposta 2')),
-            ElevatedButton(onPressed: responder, child: Text('Resposta 3')),
+            Text(_perguntas[_perguntaAtual]),
+            ElevatedButton(onPressed: _responder, child: Text('Resposta 1')),
+            ElevatedButton(onPressed: _responder, child: Text('Resposta 2')),
+            ElevatedButton(onPressed: _responder, child: Text('Resposta 3')),
           ],
         ),
       ),
@@ -39,7 +39,7 @@ class PerguntaAppState extends State<PerguntaApp> {
 
 class PerguntaApp extends StatefulWidget {
   @override
-  PerguntaAppState createState() {
-    return PerguntaAppState();
+  _PerguntaAppState createState() {
+    return _PerguntaAppState();
   }
 }
