@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pergunta_app/questao.dart';
 import 'package:pergunta_app/resposta.dart';
+import 'package:pergunta_app/resultado.dart';
 
 void main() {
   runApp(PerguntaApp());
@@ -54,7 +55,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
             ...widgets
           ],
         )
-        : null,
+        : Resultado(),
       ),
     );
   }
