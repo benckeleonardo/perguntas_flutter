@@ -20,29 +20,41 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
   int _perguntaAtual = 0;
 
+  bool get temPerguntaSelecionada {
+    return _perguntaAtual < _perguntas.length;
+  }
+
   void _responder() {
-    setState(() {
-      _perguntaAtual++;
-    });
-    print('Pergunta atual: $_perguntaAtual');
+    if (temPerguntaSelecionada) {
+      setState(() {
+        _perguntaAtual++;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    List<String> respostas = _perguntas[_perguntaAtual].cast()['respostas'];
-    List<Resposta> widgets = respostas
-        .map((e) => Resposta(e, _responder))
-        .toList();
+    print('Pergunta atual: $_perguntaAtual');
+
+    List<String> respostas;
+    List<Resposta> widgets = [];
+
+    if (temPerguntaSelecionada) {
+      respostas = _perguntas[_perguntaAtual].cast()['respostas'];
+      widgets = respostas.map((e) => Resposta(e, _responder)).toList();
+    }
 
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text('Perguntas')),
-        body: Column(
+        body: temPerguntaSelecionada
+          ? Column(
           children: [
             Questao(_perguntas[_perguntaAtual]['pergunta'].toString()),
             ...widgets
           ],
-        ),
+        )
+        : null,
       ),
     );
   }
